@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Record</title>
+</head>
+<body>
+<a href="/">Home</a>  
+<h1>Student Record</h1>
+<a href="/add">Add_Student</a>
+<br> <br>
+<form method="post" action="/">
+{% csrf_token %}
+<input type="search" name="search" placeholder="Enter something here :">
+<button type="submit">Search</button>
+</form>
+<br><br>
+
+<table border="2px" cellpadding="10px">
+    <tr>
+        <th>Student_Id</th>
+        <th>Student_name</th>
+        <th>Student_Email</th>
+        <th>Student_Contact</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.contact}}</td>
+        <td><a href="/update/{{item.id}}">Update</a></td>
+        <td><a href="/delete/{{item.id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
